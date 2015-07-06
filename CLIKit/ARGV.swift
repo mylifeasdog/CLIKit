@@ -52,7 +52,7 @@ public class ARGV {
     
     func _parameterType(arg: String) -> ParameterType {
         if arg.hasPrefix("--") {
-            if contains(arg, "=") {
+            if arg.characters.contains("=") {
                 return .Option
             } else {
                 return .Flag

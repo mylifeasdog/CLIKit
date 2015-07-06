@@ -49,7 +49,7 @@ class ManagerTests: XCTestCase {
     }
     
     func testAutomaticRun() {
-        manager.run(arguments: ["test"])
+        manager.run(["test"])
         XCTAssertTrue(didExecuteTestCommand)
     }
     
@@ -60,7 +60,7 @@ class ManagerTests: XCTestCase {
             XCTAssertEqual(argv.arguments, ["arg", "arg2"])
             XCTAssertEqual(argv.options, ["option": "value"])
         }
-        manager.run(arguments: ["test_argument_passing", "arg", "arg2", "--option=value"])
+        manager.run(["test_argument_passing", "arg", "arg2", "--option=value"])
         XCTAssertTrue(closureRan)
     }
     
@@ -70,7 +70,7 @@ class ManagerTests: XCTestCase {
             closureRan = true
             XCTAssertEqual(argv.options, ["option": "value"])
         }
-        manager.run(arguments: ["--option=value"])
+        manager.run(["--option=value"])
         XCTAssertTrue(closureRan)
     }
     
@@ -80,7 +80,7 @@ class ManagerTests: XCTestCase {
             closureRan = true
             XCTAssertEqual(argv.arguments, ["arg", "arg"])
         }
-        manager.run(arguments: ["test", "foo", "bar", "arg", "arg"])
+        manager.run(["test", "foo", "bar", "arg", "arg"])
         XCTAssertTrue(closureRan)
     }
 }

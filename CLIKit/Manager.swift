@@ -14,7 +14,7 @@ public class Manager {
     
     lazy var defaultCommand: Command = {
         ClosureCommand(name: "", description: "The default command") { argv in
-            println("No command specified")
+            print("No command specified")
         }
     }()
 
@@ -46,7 +46,7 @@ public class Manager {
     public func findCommand(argv: ARGV) -> Command? {
         let args = argv.arguments
         // try to find the deepest command name matching the arguments
-        for depth in reverse(1...args.count) {
+        for depth in Array((1...args.count).reverse()) {
             let slicedArgs = Array(args[0 ..< depth]) as NSArray
             let maybeCommandName = slicedArgs.componentsJoinedByString(" ")
             
@@ -76,7 +76,7 @@ public class Manager {
             if let command = findCommand(argv) {
                 command.run(self, arguments: argv)
             } else {
-                println("Unknown command.")
+                print("Unknown command.")
             }
         } else {
             defaultCommand.run(argv)
